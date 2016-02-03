@@ -12,10 +12,19 @@
   
   <servlet>
     <servlet-name>Greeting</servlet-name>
-    <servlet-class>com.tweet.servlets.GreetingServlet</servlet-class>
+    <servlet-class>com.tweet.services.servlets.GreetingServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Greeting</servlet-name>
     <url-pattern>/greeting</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Register</servlet-name>
+  	<servlet-class>com.tweet.services.servlets.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Register</servlet-name>
+  	<url-pattern>/register</url-pattern>
   </servlet-mapping>
 </web-app>

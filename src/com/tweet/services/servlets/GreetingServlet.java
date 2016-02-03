@@ -1,4 +1,4 @@
-package com.tweet.servlets;
+package com.tweet.services.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
