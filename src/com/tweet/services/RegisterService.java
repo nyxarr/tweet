@@ -9,8 +9,8 @@ public class RegisterService {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost/test?" +
-                    "user=root&password=");
+				"jdbc:mysql://localhost/test?" +
+                "user=root&password=");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
