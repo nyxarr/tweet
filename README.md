@@ -5,10 +5,8 @@ Twitter-like dynamic web project.
 
 ### Authentification
 
-| | |  
-
-|-|-|  
-
+| | |
+|-|-|
 | Nom du web service | RegisterService |
 | URL du web service | /register?username=""&password""=&email="" |
 | Description du service | Permet à l'utilisateur de s'enregistrer |
