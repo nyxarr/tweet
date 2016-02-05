@@ -7,7 +7,7 @@ Twitter-like dynamic web project.
 |   |   |
 |---|---|
 | Nom du web service | RegisterService |
-| URL du web service | /register?username=""&password""=&email="" |
+| URL du web service | /register |
 | Description du service | Permet à l'utilisateur de s'enregistrer |
 | Parametres en entrée | username, password, email |
 | Format de sortie | JSON |
