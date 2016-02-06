@@ -15,5 +15,5 @@ Twitter-like dynamic web project.
 | Exemple de sortie | {"success":"Utilisateur enregistré.","user":{"email":"test@test.fr","username":"test"}} |
 | Erreurs possibles | connection DB échouée, enregistrement échoué, nom utilisateur existant |
 | Avancement du Service | mise en place de l'enregistrement dans la DB |
-| Classes JAVA | RegisterService, RegisterServlet |
+| Classes JAVA | RegisterService, RegisterServlet, SqlUtils |
 | Infos supplémentaires | |
