@@ -1,6 +1,7 @@
 package com.tweet.services.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,5 +22,8 @@ public class RegisterServlet extends HttpServlet {
 		String password = req.getParameter("password");
 		String email = req.getParameter("email");
 		JSONObject json = RegisterService.registerUser(username, password, email);
+		
+		PrintWriter out = resp.getWriter();
+		out.println("<html><body><strong>" + json.toString() + "</strong></body></html>");
 	}
 }
