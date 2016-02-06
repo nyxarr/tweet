@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.tweet.services.RegisterService;
 
 public class RegisterServlet extends HttpServlet {
@@ -17,6 +19,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		RegisterService.registerUser(username, password);
+		String email = req.getParameter("email");
+		JSONObject json = RegisterService.registerUser(username, password, email);
 	}
 }
