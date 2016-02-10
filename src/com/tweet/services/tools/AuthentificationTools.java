@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.UUID;
 
 import com.tweet.bd.DBStatic;
 
@@ -59,8 +60,8 @@ public class AuthentificationTools {
 	public static String insertSession(int idUser, boolean admin) throws SQLException {
 		Connection conn = DBStatic.getConnection(null);
 		
-		SecureRandom random = new SecureRandom();
-		String key = new BigInteger(130, random).toString(32);
+		UUID random = UUID.randomUUID();
+		String key = random.toString().replace("-", "");
 		
 		String id = "UPDATE user SET session = ? WHERE id = ?";
 		PreparedStatement statement = conn.prepareStatement(id);
