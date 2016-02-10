@@ -28,6 +28,6 @@ Twitter-like dynamic web project.
 | Format de sortie | JSON |
 | Exemple de sortie | {"key": "ird8cio1sq62bb8n09e6517j14"} |
 | Erreurs possibles | arguments invalides, nom utilisateur inexistant, mot de passe incorrect |
-| Avancement du Service | terminé |
+| Avancement du Service | service terminé, session key date expiration à ajouter |
 | Classes JAVA | LoginService, LoginServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |
