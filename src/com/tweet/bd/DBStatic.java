@@ -13,8 +13,9 @@ public class DBStatic {
 	public static String mysql_password = "berber";
 	public static boolean mysql_pooling = false;
 	
-	public static Connection getConnection(Database database) throws SQLException {
+	public static Connection getConnection(Database database) throws SQLException, ClassNotFoundException {
 		if (DBStatic.mysql_pooling == false) {
+			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection(
 					"jdbc:mysql://" + DBStatic.mysql_host + "/" + DBStatic.mysql_db,
 					DBStatic.mysql_username,
