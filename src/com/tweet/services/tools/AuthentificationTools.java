@@ -8,11 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.UUID;
 
 import com.tweet.bd.DBStatic;
 
 public class AuthentificationTools {
-	public static boolean userExists(String username) throws SQLException {
+	public static boolean userExists(String username) throws SQLException, ClassNotFoundException {
 		Connection conn = DBStatic.getConnection(null);
 		
 		String searchUser = "SELECT username FROM user WHERE LOWER(username) LIKE LOWER(?)";
@@ -27,7 +28,7 @@ public class AuthentificationTools {
 		return false;
 	}
 	
-	public static boolean checkPassword(String username, String password) throws SQLException {
+	public static boolean checkPassword(String username, String password) throws SQLException, ClassNotFoundException {
 		Connection conn = DBStatic.getConnection(null);
 		
 		String userPassword = "SELECT username, password FROM user WHERE username LIKE ? AND password LIKE ?";
@@ -43,7 +44,7 @@ public class AuthentificationTools {
 		return false;
 	}
 	
-	public static int getIdUser(String username) throws SQLException {
+	public static int getIdUser(String username) throws SQLException, ClassNotFoundException {
 		Connection conn = DBStatic.getConnection(null);
 		
 		String idUser = "SELECT id FROM user WHERE username LIKE LOWER(?)";
@@ -56,16 +57,18 @@ public class AuthentificationTools {
 		return result.getInt(1);
 	}
 	
-	public static String insertSession(int idUser, boolean admin) throws SQLException {
+	public static String insertSession(int idUser, boolean admin) throws SQLException, ClassNotFoundException {
 		Connection conn = DBStatic.getConnection(null);
 		
-		SecureRandom random = new SecureRandom();
-		String key = new BigInteger(130, random).toString(32);
+		UUID uuid = UUID.randomUUID();
+		String key = uuid.toString().replace("-", "");
+		System.out.println(key.length());
 		
-		String id = "UPDATE user SET session = ? WHERE id = ?";
+		String id = "UPDATE session SET session_key = ?, user_id = ? WHERE user_id = ?";
 		PreparedStatement statement = conn.prepareStatement(id);
 		statement.setString(1, key);
 		statement.setInt(2, idUser);
+		statement.setInt(3, idUser);
 		
 		statement.executeUpdate();
 		
@@ -73,7 +76,7 @@ public class AuthentificationTools {
 	}
 	
 	public static void insertUser(String username, String password, String lastname, String firstname, String email)
-		throws SQLException {
+		throws SQLException, ClassNotFoundException {
 		
 		Connection conn = DBStatic.getConnection(null);
 		
