@@ -15,13 +15,11 @@ public class LoginService {
 		}
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			
 			boolean isUser = AuthentificationTools.userExists(username);
 			if (!isUser) {
 				return ServicesTools.error("Unknown user " + username, 1);
 			}
-			System.out.println("HERE!");
+			
 			boolean passwordCheck = AuthentificationTools.checkPassword(username, password);
 			if (!passwordCheck) {
 				return ServicesTools.error("Bad password " + username, 2);
@@ -37,7 +35,7 @@ public class LoginService {
 		} catch (JSONException e) {
 			return(ServicesTools.error("JSON Problem "+e.getMessage(),100));
 		} catch (SQLException e) {
-			return(ServicesTools.error("Problem while generating session key",1000));
+			return(ServicesTools.error(e.getMessage(),1000));
 		} catch (ClassNotFoundException e) {
 			return ServicesTools.error(e.getMessage(), 102);
 		}
