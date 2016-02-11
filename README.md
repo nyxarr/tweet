@@ -26,7 +26,7 @@ Twitter-like dynamic web project.
 | Description du service | Permet à l'utilisateur de se connecter |
 | Parametres en entrée | username, password |
 | Format de sortie | JSON |
-| Exemple de sortie | {"key": "ird8cio1sq62bb8n09e6517j14"} |
+| Exemple de sortie | {"key": "67489ab4e1504fcca6d83455370fe6e4"} |
 | Erreurs possibles | arguments invalides, nom utilisateur inexistant, mot de passe incorrect |
 | Avancement du Service | service terminé, session key date expiration à ajouter |
 | Classes JAVA | LoginService, LoginServlet, AuthentificationTools, DBStatic |

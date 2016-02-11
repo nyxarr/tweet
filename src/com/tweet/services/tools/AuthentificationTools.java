@@ -62,7 +62,6 @@ public class AuthentificationTools {
 		
 		UUID uuid = UUID.randomUUID();
 		String key = uuid.toString().replace("-", "");
-		System.out.println(key.length());
 		
 		String id = "UPDATE session SET session_key = ?, user_id = ? WHERE user_id = ?";
 		PreparedStatement statement = conn.prepareStatement(id);
