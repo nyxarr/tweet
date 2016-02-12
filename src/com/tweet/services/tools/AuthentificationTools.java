@@ -86,6 +86,24 @@ public class AuthentificationTools {
 		return key;
 	}
 	
+	public static boolean checkSession(String key) throws SQLException, ClassNotFoundException {
+		Connection conn = DBStatic.getConnection(null);
+		
+		String sql = "SELECT * FROM session WHERE session_key = ?";
+		PreparedStatement statement = conn.prepareStatement(sql);
+		statement.setString(1, key);
+		ResultSet result = statement.executeQuery();
+		
+		if (result.next()) {
+			Date expireDate = result.getDate("expire_date");
+			java.util.Date now = new java.util.Date();
+			
+			return !expireDate.before(now);
+		}
+		
+		return false;
+	}
+	
 	public static void insertUser(String username, String password, String lastname, String firstname, String email)
 		throws SQLException, ClassNotFoundException {
 		
