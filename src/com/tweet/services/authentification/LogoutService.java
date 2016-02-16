@@ -22,7 +22,6 @@ public class LogoutService {
             }
 
             JSONObject response = new JSONObject();
-            response.put("service", "logout");
             return response;
 		} catch (JSONException e) {
             return(ServicesTools.error("JSON Problem : "+e.getMessage(),100));
