@@ -1,4 +1,4 @@
-package com.tweet.services.tools;
+package com.tweet.bd;
 
 import java.sql.Connection;
 import java.sql.SQLException;
