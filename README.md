@@ -42,6 +42,6 @@ Twitter-like dynamic web project.
 | Format de sortie | JSON |
 | Exemple de sortie | {} |
 | Erreurs possibles | arguments invalides, session inexistante |
-| Avancement du Service | termin� |
+| Avancement du Service | terminé |
 | Classes JAVA | LogoutService, LogoutServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |
