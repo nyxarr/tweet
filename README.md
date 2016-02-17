@@ -28,6 +28,20 @@ Twitter-like dynamic web project.
 | Format de sortie | JSON |
 | Exemple de sortie | {"key": "67489ab4e1504fcca6d83455370fe6e4"} |
 | Erreurs possibles | arguments invalides, nom utilisateur inexistant, mot de passe incorrect |
-| Avancement du Service | service terminé, session key date expiration à ajouter |
+| Avancement du Service | service terminé |
 | Classes JAVA | LoginService, LoginServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
+
+
+|   |   |
+|---|---|
+| Nom du web service | LogoutService |
+| URL du web service | /logout |
+| Description du service | Permet à l'utilisateur de se déconnecter |
+| Parametres en entrée | session key |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | terminé |
+| Classes JAVA | LogoutService, LogoutServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |

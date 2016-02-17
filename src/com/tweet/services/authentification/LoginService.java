@@ -33,9 +33,9 @@ public class LoginService {
 			
 			return response;
 		} catch (JSONException e) {
-			return(ServicesTools.error("JSON Problem "+e.getMessage(),100));
+			return(ServicesTools.error("JSON Problem : "+e.getMessage(),100));
 		} catch (SQLException e) {
-			return(ServicesTools.error(e.getMessage(),1000));
+			return(ServicesTools.error("SQL Problem : " + e.getMessage(), 101));
 		} catch (ClassNotFoundException e) {
 			return ServicesTools.error(e.getMessage(), 102);
 		}
