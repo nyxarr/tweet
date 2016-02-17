@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import com.tweet.services.tools.Database;
-
 public class DBStatic {
 	public static String mysql_host = "localhost";
 	public static String mysql_db = "test";
 	public static String mysql_username = "root";
-	public static String mysql_password = "berber";
+	public static String mysql_password = "";
 	public static boolean mysql_pooling = false;
 	
 	public static Connection getConnection(Database database) throws SQLException, ClassNotFoundException {
