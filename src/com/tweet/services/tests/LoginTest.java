@@ -7,7 +7,7 @@ import com.tweet.services.authentification.LoginService;
 public class LoginTest {
 
 	public static void main(String[] args) {
-		JSONObject json = LoginService.loginUser("test1", "azerty");
+		JSONObject json = LoginService.loginUser("test", "azerty");
 
 		System.out.println(json.toString());
 	}

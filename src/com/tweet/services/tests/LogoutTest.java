@@ -8,7 +8,7 @@ import com.tweet.services.authentification.LogoutService;
 
 public class LogoutTest {
 	public static void main(String[] args) {
-        JSONObject resp = LoginService.loginUser("test1", "azerty");
+        JSONObject resp = LoginService.loginUser("test", "azerty");
 
         try {
             JSONObject logout =  LogoutService.logoutUser(resp.getString("key"));
