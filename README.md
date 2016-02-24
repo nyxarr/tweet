@@ -45,3 +45,50 @@ Twitter-like dynamic web project.
 | Avancement du Service | terminé |
 | Classes JAVA | LogoutService, LogoutServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |
+
+
+### Comments
+
+|   |   |
+|---|---|
+| Nom du web service | AddCommentService |
+| URL du web service | /comment/add |
+| Description du service | Permet à l'utilisateur d'ajouter un commentaire |
+| Parametres en entrée | session key |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | servlet à faire |
+| Classes JAVA | AddCommentService, AddCommentServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
+
+
+
+
+### Friends
+
+|   |   |
+|---|---|
+| Nom du web service | AddFriendService |
+| URL du web service | /friend/add |
+| Description du service | Permet à l'utilisateur d'ajouter un ami |
+| Parametres en entrée | session key |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | à faire |
+| Classes JAVA | AddFriendService, AddFriendServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
+
+|   |   |
+|---|---|
+| Nom du web service | RemoveFriendService |
+| URL du web service | /friend/remove |
+| Description du service | Permet à l'utilisateur d'ajouter un ami |
+| Parametres en entrée | session key, username |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | à faire |
+| Classes JAVA | RemoveFriendService, RemoveFriendServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
