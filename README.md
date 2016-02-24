@@ -54,7 +54,7 @@ Twitter-like dynamic web project.
 | Nom du web service | AddCommentService |
 | URL du web service | /comment/add |
 | Description du service | Permet à l'utilisateur d'ajouter un commentaire |
-| Parametres en entrée | session key |
+| Parametres en entrée | session key, comment |
 | Format de sortie | JSON |
 | Exemple de sortie | {} |
 | Erreurs possibles | arguments invalides, session inexistante |
