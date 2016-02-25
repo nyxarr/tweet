@@ -58,3 +58,6 @@ local.properties
 
 # DBStatic
 DBStatic.java
+
+# SQL Files
+*.sql
