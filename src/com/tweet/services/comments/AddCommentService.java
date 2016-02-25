@@ -10,7 +10,7 @@ import com.mongodb.client.MongoDatabase;
 public class AddCommentService {
 	public static JSONObject addComment(String key, String comment) {
 		JSONObject json = new JSONObject();
-		MongoClient mongo = new MongoClient("132.227.201.129", 27130);
+		MongoClient mongo = new MongoClient("localhost", 27015); // upmc : "132.227.201.129", 27130
 		MongoDatabase mongoDatabase = mongo.getDatabase("tweet");
 		
 		Document commentDoc = new Document();
