@@ -45,4 +45,22 @@
     <servlet-name>Logout</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddComment</servlet-name>
+    <servlet-class>com.tweet.services.servlet.comments.AddCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddComment</servlet-name>
+    <url-pattern>/comment/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetComment</servlet-name>
+    <servlet-class>com.tweet.services.servlet.comments.GetCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetComment</servlet-name>
+    <url-pattern>/comment/get</url-pattern>
+  </servlet-mapping>
 </web-app>
