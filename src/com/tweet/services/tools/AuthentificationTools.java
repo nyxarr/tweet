@@ -56,6 +56,19 @@ public class AuthentificationTools {
         return result.getInt(1);
     }
     
+    public static int getIdUserBySession(String key) throws SQLException, ClassNotFoundException {
+    	Connection conn = DBStatic.getConnection(null);
+        
+        String idUser = "SELECT user_id FROM session WHERE session_key LIKE ?";
+        PreparedStatement statement = conn.prepareStatement(idUser);
+        statement.setString(1, key);
+        
+        ResultSet result = statement.executeQuery();
+        result.first();
+        
+        return result.getInt(1);
+    }
+    
     public static String insertSession(int idUser, boolean admin) throws SQLException, ClassNotFoundException {
         Connection conn = DBStatic.getConnection(null);
         
