@@ -11,6 +11,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.tweet.services.ServicesTools;
 import com.tweet.services.tools.AuthentificationTools;
@@ -31,15 +32,17 @@ public class GetCommentService {
 			}
 			
 			int userId = AuthentificationTools.getIdUserBySession(key);
-			Mongo mongo = new Mongo("132.227.201.129", 27130);
-			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
+			Mongo mongo = new Mongo("localhost", 27017); // "132.227.201.129", 27130
+			DB mongoDatabase = mongo.getDB("test"); // gr3_guenfissi
 			DBCollection comments = mongoDatabase.getCollection("comments");
 			
-			DBCursor c = comments.find(new BasicDBObject("user", userId));
+			BasicDBObject query = new BasicDBObject();
+			query.put("user", userId);
+			DBCursor c = comments.find(query);
 			
-			ArrayList<String> commentsArray = new ArrayList<String>();
+			ArrayList<DBObject> commentsArray = new ArrayList<DBObject>();
 			while (c.hasNext()) {
-				commentsArray.add(c.next().toString());
+				commentsArray.add(c.next());
 			}
 			
 			retour.put("comments", commentsArray);

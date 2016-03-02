@@ -72,7 +72,7 @@ public class AuthentificationTools {
     public static String insertSession(int idUser, boolean admin) throws SQLException, ClassNotFoundException {
         Connection conn = DBStatic.getConnection(null);
         
-        // GÃ©nÃ©ration clÃ© de session
+        // Génération clé de session
         UUID uuid = UUID.randomUUID();
         String key = uuid.toString().replace("-", "");
         

@@ -22,12 +22,6 @@ import com.tweet.services.tools.AuthentificationTools;
 public class AddCommentService {
 	public static JSONObject addComment(String key, String comment) {
 		JSONObject json = new JSONObject();
-		MongoClient mongo = new MongoClient("localhost", 27015); // upmc : "132.227.201.129", 27130
-		MongoDatabase mongoDatabase = mongo.getDatabase("tweet");
-		
-		Document commentDoc = new Document();
-		commentDoc.append("user", comment);
-		commentDoc.append("data", comment);
 		
 		try {
 			if (key == null || comment == null) {
@@ -45,8 +39,8 @@ public class AddCommentService {
 			
 			Document commentDoc = new Document();*/
 			
-			Mongo mongo = new Mongo("132.227.201.129", 27130);
-			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
+			Mongo mongo = new Mongo("localhost", 27017);
+			DB mongoDatabase = mongo.getDB("test");
 			DBCollection comments = mongoDatabase.getCollection("comments");
 		    
 			BasicDBObject commentDoc = new BasicDBObject();

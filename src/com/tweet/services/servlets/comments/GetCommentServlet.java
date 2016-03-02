@@ -1,4 +1,4 @@
-package com.tweet.services.servlet.comments;
+package com.tweet.services.servlets.comments;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,6 +26,7 @@ public class GetCommentServlet extends HttpServlet {
 		JSONObject json = GetCommentService.getComments(key);
 		
 		PrintWriter out = resp.getWriter();
-		out.println("<html><body><strong>" + json.toString() + "</strong></body></html>");
+		resp.setContentType("application/json");
+		out.write(json.toString());
 	}
 }
