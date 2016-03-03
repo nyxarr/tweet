@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<title>Tweet</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-to-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<ul class="nav navbar-nav">
+				<li><a href="#">Home</a></li>
+				<li class="show-login"><a href="">Login</a></li>
+				<li><a href="#">Account</a></li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<div id="shadow-popup" style="display:none;"></div>
+	<div class="container-fluid">
+		<div class="jumbotron">
+			<h1>Tweet</h1>
+		</div>
+	</div>
+	<div class="login-box" style="display:none;">
+		<form id="login-form" method="get">
+			<fieldset class="form-group">
+				<input id="username" type="text" placeholder="Username">
+				<input id="password" type="password" placeholder="Password">
+				<button type="button" class="btn btn-primary" id="login-submit">Login</button>
+			</fieldset>
+		</form>
+	</div>
+	<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>

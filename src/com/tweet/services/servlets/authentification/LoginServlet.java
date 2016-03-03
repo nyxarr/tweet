@@ -26,7 +26,9 @@ public class LoginServlet extends HttpServlet {
 		
 		JSONObject json = LoginService.loginUser(username, password);
 		
+		resp.setContentType("application/json");
+		
 		PrintWriter out = resp.getWriter();
-		out.println("<html><body><strong>" + json.toString() + "</strong></body></html>");
+		out.println(json.toString());
 	}
 }
