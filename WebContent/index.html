@@ -4,36 +4,67 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<title>Tweet</title>
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-fixed-to-top">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<ul class="nav navbar-nav">
-				<li><a href="#">Home</a></li>
-				<li class="show-login"><a href="">Login</a></li>
-				<li><a href="#">Account</a></li>
-			</ul>
-			</div>
-		</div>
-	</nav>
-	<div id="shadow-popup" style="display:none;"></div>
-	<div class="container-fluid">
-		<div class="jumbotron">
-			<h1>Tweet</h1>
-		</div>
-	</div>
-	<div class="login-box" style="display:none;">
-		<form id="login-form" method="get">
-			<fieldset class="form-group">
-				<input id="username" type="text" placeholder="Username">
-				<input id="password" type="password" placeholder="Password">
-				<button type="button" class="btn btn-primary" id="login-submit">Login</button>
-			</fieldset>
-		</form>
-	</div>
-	<script type="text/javascript" src="js/login.js"></script>
+    <div id="shadow-popup" style="display:none;"></div>
+    <nav class="navbar navbar-default navbar-fixed-to-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li class="show-login"><a href="#">Login</a></li>
+                <li><a href="#">Account</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header>
+    <div class="container-fluid">
+        <div id="header" class="jumbotron">
+            <h1>Tweet</h1>
+        </div>
+    </div>
+</header>
+<div class="login-box" style="display:none;">
+  <form id="login-form" method="get">
+     <fieldset class="form-group">
+        <input class="form-control" id="username" type="text" placeholder="Username">
+        <input class="form-control" id="password" type="password" placeholder="Password">
+        <button type="button" class="btn btn-primary" id="login-submit">Login</button>
+        <a id="register" href="#">or register</a>
+    </fieldset>
+</form>
+<form id="register-form" method="get" style="display:none;">
+    <fieldset class="form-group">
+        <input class="form-control" id="firstname-register" type="text" placeholder="Firstname">
+        <input class="form-control" id="lastname-register" type="text" placeholder="Lastname">
+        <input class="form-control" id="username-register" type="text" placeholder="Username">
+        <input class="form-control" id="password-register" type="password" placeholder="Password">
+        <input class="form-control" id="email-register" type="email" placeholder="Email">
+        <button type="button" class="btn btn-primary" id="register-submit">Register</button>
+    </fieldset>
+</form>
+</div>
+<div class="container">
+	<div class="row">
+        <div class=".col-sm-6">
+            <form id="message-form">
+                <textarea id="send-textarea" class="span6" rows="3" cols="50" placeholder="What's up?" required></textarea>
+                <button id="send-message" class="btn btn-primary" type="submit">Send</button>
+            </form>
+            <div id="messages-panel">
+            </div>
+        </div>
+        <div class=".col-sm-6">
+         <div id="friends-panel">
+         </div>
+     </div>
+ </div>
+</div>
+<script type="text/javascript" src="js/login.js"></script>
+<script type="text/javascript" src="js/message.js"></script>
 </body>
 </html>
