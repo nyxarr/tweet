@@ -2,6 +2,8 @@ package com.tweet.services.authentification;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
