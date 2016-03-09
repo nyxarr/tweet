@@ -21,30 +21,27 @@ public class GetCommentService {
 		JSONObject retour = new JSONObject();
 		
 		try {
-			if (key == null){
-				return ServicesTools.error("Wrong argument.", 0);
-			}
-			
-			boolean sessionExists = AuthentificationTools.checkSession(key);
-			
-			if (!sessionExists) {
-				return ServicesTools.error("You are not logged in!", 1);
-			}
-			
-			int userId = AuthentificationTools.getIdUserBySession(key);
 			Mongo mongo = new Mongo("localhost", 27017); // "132.227.201.129", 27130
 			DB mongoDatabase = mongo.getDB("test"); // gr3_guenfissi
 			DBCollection comments = mongoDatabase.getCollection("comments");
+			DBCursor cursor;
 			
-			BasicDBObject query = new BasicDBObject();
-			query.put("user", userId);
-			DBCursor c = comments.find(query);
-			
-			ArrayList<DBObject> commentsArray = new ArrayList<DBObject>();
-			while (c.hasNext()) {
-				commentsArray.add(c.next());
+			if( key != null ) {
+				int userId = AuthentificationTools.getIdUserBySession(key);
+
+				BasicDBObject query = new BasicDBObject();
+				query.put("user", userId);
+				cursor = comments.find(query);
+			} else {
+				cursor = comments.find();
 			}
 			
+			ArrayList<DBObject> commentsArray = new ArrayList<DBObject>();
+			cursor.sort(new BasicDBObject("post_date", -1));
+			while (cursor.hasNext()) {
+				commentsArray.add(cursor.next());
+			}
+
 			retour.put("comments", commentsArray);
 			
 			mongo.close();
