@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	if (localStorage.getItem("key")) {
+		$('li.show-login').replaceWith("<li><a href='javascript:void(0)'>Logout</a></li>");
+	}
+	
 	$('.show-login').click(function() {
 		$('#shadow-popup').show();
 		$('.login-box').show();
@@ -18,6 +22,7 @@ $(document).ready(function() {
 			{ username: $('#username').val(), password: $('#password').val() }
 		).done(function (data) {
 			var key = data.key;
+            localStorage.setItem("key", key);
 			$.get("/tweet/comment/get",
 					{ key: key }
 			).done(function (data) {
