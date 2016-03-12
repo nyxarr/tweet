@@ -69,10 +69,23 @@ public class AuthentificationTools {
         return result.getInt(1);
     }
     
+    public static String getUsernameById(int id) throws SQLException, ClassNotFoundException {
+    	Connection conn = DBStatic.getConnection(null);
+        
+        String idUser = "SELECT username FROM user WHERE id = ?";
+        PreparedStatement statement = conn.prepareStatement(idUser);
+        statement.setInt(1, id);
+        
+        ResultSet result = statement.executeQuery();
+        result.first();
+        
+        return result.getString(1);
+    }
+    
     public static String insertSession(int idUser, boolean admin) throws SQLException, ClassNotFoundException {
         Connection conn = DBStatic.getConnection(null);
         
-        // Génération clé de session
+        // Gï¿½nï¿½ration clï¿½ de session
         UUID uuid = UUID.randomUUID();
         String key = uuid.toString().replace("-", "");
         
