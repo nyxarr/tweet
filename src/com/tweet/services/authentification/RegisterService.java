@@ -22,6 +22,11 @@ public class RegisterService {
 				return ServicesTools.error("Username already exists", 1);
 			}
 			
+			boolean checkEmail = AuthentificationTools.emailExists(email);
+			if (checkEmail) {
+				return ServicesTools.error("Email already exists", 2);
+			}
+			
 			// Insere l'utilisateur dans la BD
 			AuthentificationTools.insertUser(username, password, lastname, firstname, email);
 			
