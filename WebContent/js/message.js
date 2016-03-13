@@ -16,13 +16,13 @@ $(document).ready(function() {
 	
 	$('#send-message').click(function() {
 		var key = localStorage.getItem("key");
-		//if (key) {
+		if ($('#send-textarea').val() && key) {
 			$.get(
 				"/tweet/comment/add",
 				{ key: key, comment: $('#send-textarea').val() }
 			).done(function (data) {
-				//location.reload(true);
+				location.reload(true);
 			});
-		//}
+		}
 	});
 });
