@@ -27,6 +27,21 @@ public class AuthentificationTools {
         return false;
     }
     
+    public static boolean emailExists(String email)  throws SQLException, ClassNotFoundException {
+    	Connection conn = DBStatic.getConnection(null);
+        
+        String searchEmail = "SELECT email FROM user WHERE email LIKE ?";
+        PreparedStatement statement = conn.prepareStatement(searchEmail);
+        statement.setString(1, email);
+        
+        ResultSet result = statement.executeQuery();
+        if (result.next()) {
+            return true;
+        }
+        
+        return false;
+    }
+    
     public static boolean checkPassword(String username, String password) throws SQLException, ClassNotFoundException {
         Connection conn = DBStatic.getConnection(null);
         
