@@ -63,4 +63,22 @@
     <servlet-name>GetComment</servlet-name>
     <url-pattern>/comment/get</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AddFriend</servlet-name>
+    <servlet-class>com.tweet.services.servlets.friends.AddFriendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddFriend</servlet-name>
+    <url-pattern>/friends/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetFriends</servlet-name>
+    <servlet-class>com.tweet.services.servlets.friends.GetFriendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetFriends</servlet-name>
+    <url-pattern>/friends/get</url-pattern>
+  </servlet-mapping>
 </web-app>
