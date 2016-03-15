@@ -1,6 +1,25 @@
 $(document).ready(function() {
-	if (localStorage.getItem("key")) {
+	if (localStorage.getItem("tweet_key")) {
 		$('li.show-login').replaceWith("<li id='logout-submit'><a href='javascript:void(0)'>Logout</a></li>");
+		$('#leftmenu-ul > ul').prepend('<div id="welcome">Welcome, ' + localStorage.getItem("username") +'!</div>')
+
+		$.get('/tweet/friends/get', {
+				key: localStorage.getItem("tweet_key")
+			},
+			function(data) {
+				if (!data.friends.length) {
+					$('#friends-panel ul').append(
+						'<li>No friends</li>'
+					);
+				}
+				
+				$.each(data.friends, function(i, item) {
+					$('#friends-panel ul').append(
+						'<li><button class="remove-friend" onclick="removeFriend(this)"><span aria-hidden="true">&times;</span></button>' + item.username + '</li>'
+					);
+				});
+			}
+		);
 	}
 
 	$('.show-login').click(function() {
@@ -16,7 +35,14 @@ $(document).ready(function() {
 		$("#register-form").hide();
 	});
 
-	$('#login-form').on('submit', function() {
+	$('#login-submit').on('click', function() {
+		if (!$('#username').val() || !$('#password').val()) {
+			alert('Fields are required.');
+			return;
+		}
+
+		var username = $('#username').val();
+
 		$.get(
 			"/tweet/login", {
 				username: $('#username').val(),
@@ -29,7 +55,8 @@ $(document).ready(function() {
 			}
 
 			var key = data.key;
-			localStorage.setItem("key", key);
+			localStorage.setItem("tweet_key", key);
+			localStorage.setItem("username", username);
 
 			$.get("/tweet/comment/get", {
 				key: key
@@ -43,9 +70,11 @@ $(document).ready(function() {
 
 	$('#logout-submit').click(function() {
 		$.get(
-			"/tweet/logout"
+			"/tweet/logout", {
+				key: localStorage.getItem("tweet_key")
+			}
 		).done(function() {
-			localStorage.removeItem("key");
+			localStorage.removeItem("tweet_key");
 			location.reload();
 		});
 	});
