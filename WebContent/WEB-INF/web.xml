@@ -81,4 +81,13 @@
     <servlet-name>GetFriends</servlet-name>
     <url-pattern>/friends/get</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RemoveFriend</servlet-name>
+    <servlet-class>com.tweet.services.servlets.friends.RemoveFriendServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveFriend</servlet-name>
+    <url-pattern>/friends/remove</url-pattern>
+  </servlet-mapping>
 </web-app>
