@@ -22,8 +22,17 @@ public class GetCommentServlet extends HttpServlet {
 		throws IOException, ServletException {
 		
 		String key = req.getParameter("key");
+		int page = 1;
+		if (req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
 		
-		JSONObject json = GetCommentService.getComments(key);
+		JSONObject json;
+		if (key != null) {
+			json = GetCommentService.getComments(page, key);
+		} else {
+			json = GetCommentService.getComments(page, null);
+		}
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
