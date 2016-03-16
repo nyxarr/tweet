@@ -37,11 +37,11 @@ public class RegisterService {
 			
 			return json;
 		} catch (SQLException e) {
-			return ServicesTools.error("Database problem : "+e.getMessage(), 100);
+			return ServicesTools.error("Database problem : "+e.getMessage(), ServicesTools.SQL_EXCEPTION);
 		} catch (JSONException e) {
-			return ServicesTools.error("JSON problem : "+e.getMessage(), 101);
+			return ServicesTools.error("JSON problem : "+e.getMessage(), ServicesTools.JSON_EXCEPTION);
 		} catch (ClassNotFoundException e) {
-			return ServicesTools.error(e.getMessage(), 102);
+			return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
 		}
 	}
 }

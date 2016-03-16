@@ -16,7 +16,7 @@ public class AddFriendService {
 	public static JSONObject addFriend(String key, int friendId) {
 		try {
 			if (key == null || new Integer(friendId) == null) {
-				return ServicesTools.error("Wrong arguments", 0);
+				return ServicesTools.error("Wrong arguments", ServicesTools.WRONG_ARG_ERROR);
 			}
 			
 			boolean sessionExists = AuthentificationTools.checkSession(key);
@@ -46,11 +46,11 @@ public class AddFriendService {
 			
 			return json;
 		} catch (SQLException e) {
-			return ServicesTools.error(e.getMessage(), 100);
+			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);
 		} catch (ClassNotFoundException e) {
-			return ServicesTools.error(e.getMessage(), 101);
+			return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
 		} catch (UnknownHostException e) {
-			return ServicesTools.error(e.getMessage(), 102);
+			return ServicesTools.error(e.getMessage(), ServicesTools.UNKNOWN_HOST_EXCEPTION);
 		}
 	}
 }
