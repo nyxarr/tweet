@@ -62,6 +62,19 @@ Twitter-like dynamic web project.
 | Classes JAVA | AddCommentService, AddCommentServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |
 
+|   |   |
+|---|---|
+| Nom du web service | GetCommentService |
+| URL du web service | /comment/add |
+| Description du service | Permet de récupérer les messages |
+| Parametres en entrée | page, session key |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | terminé |
+| Classes JAVA | GetCommentService, GetCommentServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
+
 
 
 
@@ -72,7 +85,7 @@ Twitter-like dynamic web project.
 | Nom du web service | AddFriendService |
 | URL du web service | /friend/add |
 | Description du service | Permet à l'utilisateur d'ajouter un ami |
-| Parametres en entrée | session key |
+| Parametres en entrée | session key, username friend |
 | Format de sortie | JSON |
 | Exemple de sortie | {} |
 | Erreurs possibles | arguments invalides, session inexistante |
@@ -84,11 +97,24 @@ Twitter-like dynamic web project.
 |---|---|
 | Nom du web service | RemoveFriendService |
 | URL du web service | /friend/remove |
-| Description du service | Permet à l'utilisateur d'ajouter un ami |
-| Parametres en entrée | session key, username |
+| Description du service | Permet à l'utilisateur d'enlever un ami |
+| Parametres en entrée | session key, username friend |
 | Format de sortie | JSON |
 | Exemple de sortie | {} |
 | Erreurs possibles | arguments invalides, session inexistante |
-| Avancement du Service | à faire |
+| Avancement du Service | terminé |
 | Classes JAVA | RemoveFriendService, RemoveFriendServlet, AuthentificationTools, DBStatic |
+| Infos supplémentaires | |
+
+|   |   |
+|---|---|
+| Nom du web service | GetFriendService |
+| URL du web service | /friend/get |
+| Description du service | Permet de récupérer liste amis |
+| Parametres en entrée | session key |
+| Format de sortie | JSON |
+| Exemple de sortie | {} |
+| Erreurs possibles | arguments invalides, session inexistante |
+| Avancement du Service | terminé |
+| Classes JAVA | GetFriendService, GetFriendServlet, AuthentificationTools, DBStatic |
 | Infos supplémentaires | |
