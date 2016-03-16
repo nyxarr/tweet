@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	if (localStorage.getItem("tweet_key")) {
+		$('#leftmenu-ul > ul').append('<li id="my-tweets"><a href="javascript:void(0)"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>My tweets</a></li>');
+	}
+
 	var page = 1;
 	var maxPage;
 
@@ -9,6 +13,10 @@ $(document).ready(function() {
 		}
 	).done(function(data) {
 		showMessages(data);
+	});
+
+	$('#my-tweets').click(function(event) {
+		alert('my tweets');
 	});
 
 	$('#send-message').click(function() {

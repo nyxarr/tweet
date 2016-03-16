@@ -1,25 +1,9 @@
 $(document).ready(function() {
 	if (localStorage.getItem("tweet_key")) {
-		$('li.show-login').replaceWith("<li id='logout-submit'><a href='javascript:void(0)'>Logout</a></li>");
-		$('#leftmenu-ul > ul').prepend('<div id="welcome">Welcome, ' + localStorage.getItem("username") +'!</div>')
-
-		$.get('/tweet/friends/get', {
-				key: localStorage.getItem("tweet_key")
-			},
-			function(data) {
-				if (!data.friends.length) {
-					$('#friends-panel ul').append(
-						'<li>No friends</li>'
-					);
-				}
-				
-				$.each(data.friends, function(i, item) {
-					$('#friends-panel ul').append(
-						'<li><button class="remove-friend" onclick="removeFriend(this)"><span aria-hidden="true">&times;</span></button>' + item.username + '</li>'
-					);
-				});
-			}
-		);
+		$('li.show-login').replaceWith("<li id='logout-submit'><a href='javascript:void(0)'><span class=\"glyphicon glyphicon-log-out\" aria-hidden=\"true\"></span>Logout</a></li>");
+		$('#leftmenu-ul > ul').prepend('<div id="welcome">Welcome, ' + localStorage.getItem("username") +'!</div>');
+	} else {
+		$('#show-friends').hide();
 	}
 
 	$('.show-login').click(function() {
