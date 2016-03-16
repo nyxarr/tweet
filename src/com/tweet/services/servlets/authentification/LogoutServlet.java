@@ -23,6 +23,8 @@ public class LogoutServlet extends HttpServlet {
 		
 		JSONObject json = LogoutService.logoutUser(key);
 		
+		resp.setContentType("application/json");
+		
 		PrintWriter out = resp.getWriter();
 		out.println(json);
 	}
