@@ -18,7 +18,7 @@
 						<fieldset class="form-group">
 							<input class="form-control" id="username" type="text" placeholder="Username" required>
 							<input class="form-control" id="password" type="password" placeholder="Password" required>
-							<button type="submit" class="btn btn-primary" id="login-submit">Login</button>
+							<button type="button" class="btn btn-primary" id="login-submit">Login</button>
 							<a id="register" href="javascript:void(0)">or register</a>
 						</fieldset>
 					</form>
@@ -41,25 +41,42 @@
 								<div id="container-leftmenu" class="container-fluid">
 									<div id="leftmenu-ul" class="navbar-header">
 										<ul class="nav navbar-default">
-											<li><a href="#">Home</a></li>
-											<li class="show-login"><a href="javascript:void(0)">Login</a></li>
-											<li><a href="#">Account</a></li>
+											<li><a href="/tweet/index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+											<li class="show-login"><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Login</a></li>
+											<!-- <li><a href="#">Account</a></li> -->
+											<li>
+												<a id="show-friends" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friends</a><span id="friend-count" class="badge"></span>
+												<div id="friends-panel" style="display: none;">
+													<ul>
+													</ul>
+												</div>
+											</li>
 										</ul>
 									</div>
 								</div>
 							</nav>
 						</div>
-						<div class="col-md-8" style="margin-top: 25px;">
+						<div class="col-md-8" style="margin-top: 25px; margin-left: 350px;">
 							<form id="message-form" method="get">
 								<textarea id="send-textarea" class="span6" rows="3" cols="50"
 								placeholder="What's up?" required></textarea>
 								<button id="send-message" class="btn btn-primary">Send</button>
 							</form>
+							<div class="row">
+								<nav>
+									<ul id="pager" class="pager">
+										<li id="prev-page"><button class="btn">Previous</button></li>
+										<li id="next-page"><button class="btn">Next</button></li>
+									</ul>
+								</nav>
+							</div>
 							<div id="messages-panel"></div>
 						</div>
 					</div>
 				</div>
+				<script type="text/javascript" src="js/animation.js"></script>
 				<script type="text/javascript" src="js/authentification.js"></script>
 				<script type="text/javascript" src="js/message.js"></script>
+				<script type="text/javascript" src="js/friends.js"></script>
 			</body>
 		</html>
