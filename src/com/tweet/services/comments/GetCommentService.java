@@ -17,7 +17,7 @@ import com.tweet.services.ServicesTools;
 import com.tweet.services.tools.AuthentificationTools;
 
 public class GetCommentService {
-	public static JSONObject getComments(String key) {
+	public static JSONObject getComments(int page, String key) {
 		JSONObject retour = new JSONObject();
 		
 		try {
@@ -30,7 +30,7 @@ public class GetCommentService {
 				int userId = AuthentificationTools.getIdUserBySession(key);
 
 				BasicDBObject query = new BasicDBObject();
-				query.put("user", userId);
+				query.put("user_id", userId);
 				cursor = comments.find(query);
 			} else {
 				cursor = comments.find();
@@ -38,6 +38,8 @@ public class GetCommentService {
 			
 			ArrayList<DBObject> commentsArray = new ArrayList<DBObject>();
 			cursor.sort(new BasicDBObject("post_date", -1));
+			cursor.skip(10 * (page - 1));
+			cursor.limit(10);
 			while (cursor.hasNext()) {
 				commentsArray.add(cursor.next());
 			}
@@ -46,13 +48,13 @@ public class GetCommentService {
 			
 			mongo.close();
 		} catch (ClassNotFoundException e) {
-			return ServicesTools.error(e.getMessage(), 2);
+			return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
 		} catch (SQLException e) {
-			return ServicesTools.error(e.getMessage(), 3);
+			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);
 		} catch (UnknownHostException e) {
-			return ServicesTools.error(e.getMessage(), 4);
+			return ServicesTools.error(e.getMessage(), ServicesTools.UNKNOWN_HOST_EXCEPTION);
 		} catch (JSONException e) {
-			return ServicesTools.error(e.getMessage(), 5);
+			return ServicesTools.error(e.getMessage(), ServicesTools.JSON_EXCEPTION);
 		}
 		
 		return retour;
