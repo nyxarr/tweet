@@ -1,100 +1,110 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet"
-			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-			<link rel="stylesheet" href="css/style.css">
-			<link
-				href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700'
-				rel='stylesheet' type='text/css'>
-				<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-				<title>Tweet</title>
-			</head>
-			<body>
-				<div id="shadow-popup" style="display: none; z-index: 99;"></div>
-				<div class="login-box" style="display: none; z-index: 100;">
-					<form id="login-form" method="get">
-						<fieldset class="form-group">
-							<input class="form-control" id="username" type="text" placeholder="Username" required>
-							<input class="form-control" id="password" type="password" placeholder="Password" required>
-							<button type="button" class="btn btn-primary" id="login-submit">Login</button>
-							<a id="register" href="javascript:void(0)">or register</a>
-						</fieldset>
-					</form>
-					<form id="register-form" method="get" style="display: none;">
-						<fieldset class="form-group">
-							<input class="form-control" id="firstname-register" type="text" placeholder="Firstname" required>
-							<input class="form-control" id="lastname-register" type="text" placeholder="Lastname" required>
-							<input class="form-control" id="username-register" type="text" placeholder="Username" required>
-							<input class="form-control" id="password-register" type="password" placeholder="Password" required>
-							<input class="form-control" id="password-confirm" type="password" placeholder="Confirm password" required>
-							<input class="form-control" id="email-register" type="email" placeholder="Email" required>
-							<button type="submit" class="btn btn-primary" id="register-submit">Register</button>
-						</fieldset>
-					</form>
-				</div>
-				<div id="container-body" class="container-fluid">
-					<div id="row-body" class="row">
-						<div id="leftside-menu" class="col-md-2">
-							<nav id="leftmenu" class="sidebar-nav">
-								<div id="container-leftmenu" class="container-fluid">
-									<div id="leftmenu-ul" class="navbar-header">
-										<ul class="nav navbar-default">
-											<li><a href="/tweet/index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-											<li class="show-login"><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Login</a></li>
-											<!-- <li><a href="#">Account</a></li> -->
-											<li>
-												<a id="show-friends" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friends</a><span id="friend-count" class="badge"></span>
-												<div id="friends-panel" style="display: none;">
-													<ul>
-													</ul>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</nav>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700'
+	rel='stylesheet' type='text/css'>
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<title>Tweet</title>
+</head>
+<body>
+	<div id="shadow-popup" style="display: none; z-index: 99;"></div>
+	<div class="login-box" style="display: none; z-index: 100;">
+		<form id="login-form" method="get">
+			<fieldset class="form-group">
+				<input class="form-control" id="username" type="text" placeholder="Username" required>
+				<input class="form-control" id="password" type="password" placeholder="Password" required>
+				<button type="button" class="btn btn-primary" id="login-submit">Login</button>
+				<a id="register" href="javascript:void(0)">or register</a>
+			</fieldset>
+		</form>
+		<form id="register-form" method="get" style="display: none;">
+			<fieldset class="form-group">
+				<input class="form-control" id="firstname-register" type="text" placeholder="Firstname" required>
+				<input class="form-control" id="lastname-register" type="text" placeholder="Lastname" required>
+				<input class="form-control" id="username-register" type="text" placeholder="Username" required>
+				<input class="form-control" id="password-register" type="password" placeholder="Password" required>
+				<input class="form-control" id="password-confirm" type="password" placeholder="Confirm password" required>
+				<input class="form-control" id="email-register" type="email" placeholder="Email" required>
+				<button type="submit" class="btn btn-primary" id="register-submit">Register</button>
+			</fieldset>
+		</form>
+	</div>
+	<div id="container-body" class="container-fluid">
+		<div id="row-body" class="row">
+			<div id="leftside-menu" class="col-md-2">
+				<nav id="leftmenu" class="navbar navbar-default">
+					<div id="container-leftmenu" class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
 						</div>
-						<div class="col-md-8" style="margin-top: 25px; margin-left: 350px;">
-							<form id="message-form" method="get">
-								<textarea id="send-textarea" class="span6" rows="3" cols="50"
-								placeholder="What's up?" required></textarea>
-								<button id="send-message" class="btn btn-primary">Send</button>
-							</form>
-							<div class="row">
-								<nav>
-									<ul id="pager" class="pager">
-										<li id="prev-page"><button class="btn">Previous</button></li>
-										<li id="next-page"><button class="btn">Next</button></li>
-									</ul>
-								</nav>
+						<div class="collapse navbar-collapse" id="navbar-collapse">
+							<div id="leftmenu-ul" class="navbar-header">
+								<ul class="nav navbar-default">
+									<li><a href="/tweet/index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+									<li class="show-login"><a href="javascript:void(0)"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Login</a></li>
+									<!-- <li><a href="#">Account</a></li> -->
+									<li>
+										<a id="show-friends" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friends</a><span id="friend-count" class="badge"></span>
+										<div id="friends-panel" style="display: none;">
+											<ul>
+											</ul>
+										</div>
+									</li>
+								</ul>
 							</div>
-							<div id="messages-panel"></div>
 						</div>
 					</div>
+				</nav>
+			</div>
+			<div id="body-scroll" class="col-md-8" style="margin-top: 25px;">
+				<form id="message-form" method="get">
+					<textarea id="send-textarea" class="span6" rows="3" cols="50"
+					placeholder="What's up?" required></textarea>
+					<button id="send-message" class="btn btn-primary">Send</button>
+				</form>
+				<div class="row">
+					<nav>
+						<ul id="pager" class="pager">
+							<li id="prev-page"><button class="btn">Previous</button></li>
+							<li id="next-page"><button class="btn">Next</button></li>
+						</ul>
+					</nav>
 				</div>
-				<div id="edit-tweets" class="modal fade" tabindex="-1" role="dialog">
-				  	<div class="modal-dialog">
-				    	<div class="modal-content">
-				      		<div class="modal-header">
-				        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        		<h4 class="modal-title">My tweets</h4>
-				      		</div>
-				      		<div class="modal-body">
-				        		<p>One fine body&hellip;</p>
-				      		</div>
-				      		<div class="modal-footer">
-				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        		<button type="button" class="btn btn-primary">Save changes</button>
-				      		</div>
-				    	</div><!-- /.modal-content -->
-				  	</div><!-- /.modal-dialog -->
-				</div><!-- /.modal -->
-				<script type="text/javascript" src="js/animation.js"></script>
-				<script type="text/javascript" src="js/authentification.js"></script>
-				<script type="text/javascript" src="js/message.js"></script>
-				<script type="text/javascript" src="js/friends.js"></script>
-			</body>
-		</html>
+				<div id="messages-panel"></div>
+			</div>
+		</div>
+	</div>
+	<div id="edit-tweets" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">My tweets</h4>
+				</div>
+				<div id="modal-tweets" class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<script type="text/javascript" src="js/authentification.js"></script>
+	<script type="text/javascript" src="js/message.js"></script>
+	<script type="text/javascript" src="js/friends.js"></script>
+</body>
+</html>

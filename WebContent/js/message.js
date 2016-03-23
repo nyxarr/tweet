@@ -30,6 +30,7 @@ $(document).ready(function() {
 	});
 
 	$('#next-page').click(function() {
+		$('#prev-page button').prop('disabled', false);
 		if (!maxPage || page < maxPage) {
 			$.get(
 				"/tweet/comment/get",
@@ -39,16 +40,20 @@ $(document).ready(function() {
 			).done(function(data) {
 				if (data.comments.length < 1) {
 					maxPage = --page;
-					$('#next-page').prop('disabled', true);
+					$('#next-page button').prop('disabled', true);
 				} else {
 					showMessages(data);
+
 				}
 			});
+		} else if (page == maxPage) {
+			$('#next-page button').prop('disabled', true);
 		}
 	});
 
 	$('#prev-page').click(function() {
-		if (page != 1) {
+		$('#next-page button').prop('disabled', false);
+		if (page > 1) {
 			$.get(
 				"/tweet/comment/get",
 				{
@@ -58,8 +63,33 @@ $(document).ready(function() {
 				showMessages(data);
 			});
 		} else {
-			$('#prev-page').prop('disabled', true);
+			$('#prev-page button').prop('disabled', true);
 		}
+	});
+
+	$('#edit-tweets').on('show.bs.modal', function() {
+		var key = localStorage.getItem("tweet_key");
+		$.get(
+			"/tweet/comment/get",
+			{
+				key: key,
+				page: 1
+			}
+		).done(function(data) {
+			var rows = '';
+			for (i = 0; i < data.comments.length; i++) {
+				rows += '<tr><td>' + data.comments[i].data + '</td><td>' + data.comments[i].post_date + '</td></tr>';
+			}
+
+			$('#modal-tweets').html(
+				'<table class="table">' +
+				'	<thead><th>Message</th><th>Post date</th></thead>' +
+				'	<tbody>' +
+						rows +
+				'	</tbody>' +
+				'</table>'
+			);
+		});		
 	});
 
 	function showMessages(data) {
@@ -67,13 +97,11 @@ $(document).ready(function() {
 		$.each(data.comments, function(i, item) {
 			$('#messages-panel').append(
 				'<div class="row">' +
-				'	<div class="col-md-2">' +
+				'	<div class="col-md-12">' +
 				'		<div class="panel panel-default">' +
-				'			<div class="panel-body">' + data.comments[i].username + '</div>' +
-				'		</div>' +
-				'	</div>' +
-				'	<div class="col-md-10">' +
-				'		<div class="panel panel-default">' +
+				'			<div class="panel-heading">' +
+								data.comments[i].username +
+				'			</div>' +
 				'			<div class="panel-body">' +
 								data.comments[i].data.replace(/\n/g, "<br />") +
 				'			</div>' +

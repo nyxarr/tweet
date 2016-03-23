@@ -24,6 +24,21 @@ body {
     height: 100%
 }
 
+#navbar-collapse {
+    padding: 0 !important;
+    height: 100% !important;
+    margin-right: 0 !important;
+}
+
+.navbar-header {
+    margin-right: 0 !important;
+    padding: 0;
+}
+
+.navbar-toggle {
+    margin-right: 30px;
+}
+
 #leftmenu {
     margin: 0px;
     padding: 0px;
@@ -114,12 +129,31 @@ button#send-message {
     max-width: 100%;
 }
 
+#body-scroll {
+    width: 80%;
+    height: auto;
+    position: absolute;
+    right: 0;
+}
+
 #pager {
     margin: 50px 0px 0px 0px;
 }
 
 #messages-panel {
     margin-top: 20px;
+}
+
+.panel-heading {
+    background-color: #4B97A4 !important;
+    color: #F5F5F5 !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.panel-body {
+    min-height: 100px;
+    font-weight: 400;
 }
 
 #friends-panel {
@@ -145,6 +179,10 @@ button#send-message {
     background-color: #6A778A;
 }
 
+#edit-tweets .modal-dialog {
+    width: 80% !important;
+}
+
 .glyphicon {
     float: right;
     margin-right: 10px;
@@ -153,4 +191,22 @@ button#send-message {
 
 .panel-footer {
     font-size: 0.9em;
+}
+
+@media screen and (max-width: 991px) {
+    #leftside-menu {
+        position: relative;
+        height: auto;
+    }
+
+    #body-scroll {
+        width: 100%;
+    }
+
+    .glyphicon {
+        float: left;
+        padding-top: 3px;
+        margin-left: 10px;
+        margin-right: 20px;
+    }
 }
