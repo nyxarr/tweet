@@ -58,15 +58,16 @@
 									<li>
 										<a id="show-friends" href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friends</a><span id="friend-count" class="badge"></span>
 										<div id="friends-panel" style="display: none;">
+											<button type="button" class="btn btn-primary" id="add-friend-button">
+												<span class="glyphicon glyphicon-plus"></span>
+												Add Friend
+											</button>
+											<form id="add-friend-form" style="display: none;" method="get">
+												<div class="form-group">
+													<input type="text" class="form-control" id="friend-add-input">
+												</div>
+											</form>
 											<ul>
-												<li id="add-friend">
-													Add friend
-													<form id="add-friend-form" style="display: none;" method="get">
-														<div class="form-group">
-															<input type="text" class="form-control" id="friend-add-input">
-														</div>
-													</form>
-												</li>
 											</ul>
 										</div>
 									</li>
@@ -79,7 +80,7 @@
 			<div id="body-scroll" class="col-md-8" style="margin-top: 25px;">
 				<form id="message-form" method="get">
 					<textarea id="send-textarea" class="span6" rows="3" cols="50"
-					placeholder="What's up?" required></textarea>
+					placeholder="What's up? (min. 3 characters)" required></textarea>
 					<button id="send-message" class="btn btn-primary">Send</button>
 				</form>
 				<div class="row">

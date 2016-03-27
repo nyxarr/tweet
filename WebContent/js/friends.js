@@ -11,8 +11,8 @@ $(document).ready(function($) {
 
 			$.each(data.friends, function(i, item) {
 				$('#friends-panel ul').append(
-					'<li><button class="remove-friend" onclick="removeFriend(this)"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size:0.8em;"></span></button>' +
-					item.friend_username +
+					'<li><a href="#" class="remove-friend"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size:0.8em; float:left; margin-top:3px;"></span></a>' +
+					item.username +
 					'</li>'
 				);
 			});
@@ -27,26 +27,30 @@ $(document).ready(function($) {
 		}
 	});
 	
-	$('#add-friend').click(function() {
-		$(this).find('#add-friend-form').show();
+	$('#add-friend-button').click(function() {
+		if ($('#add-friend-form').is(':visible')) {
+			$('#add-friend-form').hide();
+		} else {
+			$('#add-friend-form').show();
+			$('#friend-add-input').focus();
+		}
 	});
 	
 	$("#friend-add-input").on('keydown', function(event) {
 		if(event.which == 13) {
-			$("#add-friend-form").trigger('submit');
-		}
-	});
-	
-	$("#add-friend-form").on('submit', function() {
-		$.get(
+			$.get(
 			"/tweet/friends/add",
 			{
 				key: localStorage.getItem("tweet_key"),
 				friend: $('#friend-add-input').val()
 			}).done(function(data) {
-				console.log(data);
-				//location.reload(true);
+				location.reload(true);
 			});
+		}
+	});
+	
+	$('#friend-add-input').click(function(event){
+		event.stopPropagation();
 	});
 
 	$(document).on('click', 'button.remove-item', function() {
@@ -58,13 +62,23 @@ $(document).ready(function($) {
 		).done(location.reload(true));
 	});
 
-	function removeFriend(button) {
+	$(document).on('click', '.remove-friend', function() {
+		var r = confirm("Do you want to remove '" + $(this).closest('li').text() +"' ?");
+
+		if (r == true) {
+			removeFriend(this);
+		}
+	});
+
+	function removeFriend(element) {
 		var text = '';
-		$(button).closest('li').contents().each(function() {
+		$(element).closest('li').contents().each(function() {
 			if (this.nodeType === 3) {
 				text += this.wholeText;
 			}
 		});
+
+		console.log(text);
 
 		$.get(
 			'/tweet/friends/remove', {

@@ -1,6 +1,13 @@
 $(document).ready(function() {
 	if (localStorage.getItem("tweet_key")) {
-		$('#leftmenu-ul > ul').append('<li id="my-tweets"><a href="javascript:void(0)" data-toggle="modal" data-target="#edit-tweets"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>My tweets</a></li>');
+		$('#leftmenu-ul > ul').append(
+			'<li id="my-tweets">' +
+			'	<a href="javascript:void(0)" data-toggle="modal" data-target="#edit-tweets">' +
+			'		<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>' +
+			'		My tweets' +
+			'	</a>' +
+			'</li>'
+		);
 	} else {
 		$("#message-form").hide();
 	}
@@ -19,7 +26,7 @@ $(document).ready(function() {
 
 	$('#send-message').click(function() {
 		var key = localStorage.getItem("tweet_key");
-		if ($('#send-textarea').val() && key) {
+		if ($('#send-textarea').val() && $('#send-textarea').val().length > 2 && key) {
 			$.get(
 				"/tweet/comment/add", {
 					key: key,
@@ -28,6 +35,8 @@ $(document).ready(function() {
 			).done(function(data) {
 				location.reload(true);
 			});
+		} else {
+			alert('Cannot send message.');
 		}
 	});
 
@@ -80,7 +89,7 @@ $(document).ready(function() {
 		).done(function(data) {
 			var rows = '';
 			for (i = 0; i < data.comments.length; i++) {
-				rows += '<tr><td>' + data.comments[i].data + '</td><td>' + data.comments[i].post_date + '</td></tr>';
+				rows += '<tr><td><p>' + data.comments[i].data + '</p></td><td>' + data.comments[i].post_date + '</td></tr>';
 			}
 
 			$('#modal-tweets').html(
