@@ -24,7 +24,7 @@ public class AddFriendServlet extends HttpServlet {
 		
 		JSONObject json = new JSONObject();
 		String key = req.getParameter("key");
-		int friendId = Integer.parseInt(req.getParameter("friend"));
+		String friendId = req.getParameter("friend");
 		
 		AddFriendService.addFriend(key, friendId);
 		

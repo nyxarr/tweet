@@ -179,6 +179,10 @@ button#send-message {
     background-color: #6A778A;
 }
 
+#friend-add-input {
+	width: 250px;
+}
+
 #edit-tweets .modal-dialog {
     width: 80% !important;
 }

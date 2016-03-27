@@ -40,8 +40,8 @@ public class AddCommentService {
 			
 			Document commentDoc = new Document();*/
 			
-			Mongo mongo = new Mongo("localhost", 27017);
-			DB mongoDatabase = mongo.getDB("test");
+			Mongo mongo = new Mongo("132.227.201.129", 27130);
+			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
 			DBCollection comments = mongoDatabase.getCollection("comments");
 		    
 			BasicDBObject commentDoc = new BasicDBObject();

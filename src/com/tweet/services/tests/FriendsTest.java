@@ -10,12 +10,12 @@ import com.tweet.services.friends.RemoveFriendService;
 
 public class FriendsTest {
 	public static void main(String [] args) {
-		JSONObject json = LoginService.loginUser("test", "azerty");
+		JSONObject json = LoginService.loginUser("test1", "azerty");
 		
 		try {
-			//JSONObject friends = RemoveFriendService.removeFriend(json.getString("key"), "boulbix75");
-			AddFriendService.addFriend(json.getString("key"), 4);
-			//System.out.println(friends.get("friends"));
+			AddFriendService.addFriend(json.getString("key"), "test2");
+			JSONObject data = GetFriendService.getFriends(json.getString("key"));
+			System.out.println(data.get("friends"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

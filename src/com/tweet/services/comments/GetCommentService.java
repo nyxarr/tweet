@@ -21,8 +21,8 @@ public class GetCommentService {
 		JSONObject retour = new JSONObject();
 		
 		try {
-			Mongo mongo = new Mongo("localhost", 27017); // "132.227.201.129", 27130
-			DB mongoDatabase = mongo.getDB("test"); // gr3_guenfissi
+			Mongo mongo = new Mongo("132.227.201.129", 27130); // "132.227.201.129", 27130
+			DB mongoDatabase = mongo.getDB("gr3_guenfissi"); // gr3_guenfissi
 			DBCollection comments = mongoDatabase.getCollection("comments");
 			DBCursor cursor;
 			

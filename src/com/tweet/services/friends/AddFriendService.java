@@ -13,9 +13,9 @@ import com.tweet.services.ServicesTools;
 import com.tweet.services.tools.AuthentificationTools;
 
 public class AddFriendService {
-	public static JSONObject addFriend(String key, int friendId) {
+	public static JSONObject addFriend(String key, String friend) {
 		try {
-			if (key == null || new Integer(friendId) == null) {
+			if (key == null || friend == null) {
 				return ServicesTools.error("Wrong arguments", ServicesTools.WRONG_ARG_ERROR);
 			}
 			
@@ -28,17 +28,17 @@ public class AddFriendService {
 			JSONObject json = new JSONObject();
 			
 			int userId = AuthentificationTools.getIdUserBySession(key);
-			String friendName = AuthentificationTools.getUsernameById(friendId);
+			int friendId = AuthentificationTools.getIdUser(friend);
 			
-			Mongo mongo = new Mongo("localhost", 27017);
-			DB mongoDatabase = mongo.getDB("test");
+			Mongo mongo = new Mongo("132.227.201.129", 27130);
+			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
 			DBCollection friends = mongoDatabase.getCollection("friends");
 			
 			BasicDBObject user = new BasicDBObject("user_id", userId);
 			BasicDBObject friendDoc = new BasicDBObject();
 			
-			friendDoc.put("user_id", friendId);
-			friendDoc.put("username", friendName);
+			friendDoc.put("friend_username", friend);
+			friendDoc.put("friend_id", friendId);
 			
 			BasicDBObject updateFriends = new BasicDBObject("$push", new BasicDBObject("friends", friendDoc));
 			

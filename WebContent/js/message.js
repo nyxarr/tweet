@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	if (localStorage.getItem("tweet_key")) {
 		$('#leftmenu-ul > ul').append('<li id="my-tweets"><a href="javascript:void(0)" data-toggle="modal" data-target="#edit-tweets"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>My tweets</a></li>');
+	} else {
+		$("#message-form").hide();
 	}
 
 	var page = 1;
