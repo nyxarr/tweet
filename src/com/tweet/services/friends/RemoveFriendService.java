@@ -35,7 +35,7 @@ public class RemoveFriendService {
 			BasicDBObject user = new BasicDBObject("user_id", userId);
 			BasicDBObject friendDoc = new BasicDBObject();
 			
-			friendDoc.put("friend_username", friend);
+			friendDoc.put("username", friend);
 			
 			BasicDBObject updateFriends = new BasicDBObject("$pull", new BasicDBObject("friends", friendDoc));
 			

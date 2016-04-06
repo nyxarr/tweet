@@ -31,8 +31,8 @@ public class GetFriendService {
 			
 			int userId = AuthentificationTools.getIdUserBySession(key);
 			
-			Mongo mongo = new Mongo("132.227.201.129", 27130);
-			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
+			Mongo mongo = new Mongo("localhost", 27017);
+			DB mongoDatabase = mongo.getDB("test");
 			DBCollection friends = mongoDatabase.getCollection("friends");
 			DBCursor cursor;
 			

@@ -30,15 +30,15 @@ public class AddFriendService {
 			int userId = AuthentificationTools.getIdUserBySession(key);
 			int friendId = AuthentificationTools.getIdUser(friend);
 			
-			Mongo mongo = new Mongo("132.227.201.129", 27130);
-			DB mongoDatabase = mongo.getDB("gr3_guenfissi");
+			Mongo mongo = new Mongo("localhost", 27017);
+			DB mongoDatabase = mongo.getDB("test");
 			DBCollection friends = mongoDatabase.getCollection("friends");
 			
 			BasicDBObject user = new BasicDBObject("user_id", userId);
 			BasicDBObject friendDoc = new BasicDBObject();
 			
-			friendDoc.put("friend_username", friend);
-			friendDoc.put("friend_id", friendId);
+			friendDoc.put("username", friend);
+			friendDoc.put("id", friendId);
 			
 			BasicDBObject updateFriends = new BasicDBObject("$push", new BasicDBObject("friends", friendDoc));
 			
