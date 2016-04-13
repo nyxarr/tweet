@@ -7,16 +7,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-
-//import org.bson.Document;
 import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
-//import com.mongodb.MongoClient;
-//import com.mongodb.client.MongoDatabase;
+import com.tweet.bd.DBStatic;
+import com.tweet.bd.Database;
 import com.tweet.services.ServicesTools;
 import com.tweet.services.tools.AuthentificationTools;
 
@@ -32,22 +30,19 @@ public class AddCommentService {
 			boolean sessionExists = AuthentificationTools.checkSession(key);
 			
 			if (!sessionExists) {
-				return ServicesTools.error("You are not logged in!", 1);
+				return ServicesTools.error("You are not logged in!", ServicesTools.LOGIN_ERROR);
 			}
 			
-			/*MongoClient mongo = new MongoClient("132.227.201.129", 27130); // 132.227.201.129:27130
-			MongoDatabase mongoDatabase = mongo.getDatabase("gr3_guenfissi"); // gr3_guenfissi
+			Mongo mongo = DBStatic.getMongo();
+			DBCollection comments = DBStatic.getMongoCollection(mongo, "comments");
 			
-			Document commentDoc = new Document();*/
-			
-			Mongo mongo = new Mongo("localhost", 27017);
-			DB mongoDatabase = mongo.getDB("test");
-			DBCollection comments = mongoDatabase.getCollection("comments");
-		    
 			BasicDBObject commentDoc = new BasicDBObject();
+			BasicDBObject votes = new BasicDBObject();
+			votes.put("up", 0);
+			votes.put("down", 0);
 			
-			int userId = AuthentificationTools.getIdUserBySession(key);
-			String username = AuthentificationTools.getUsernameById(userId);
+			int userId = ServicesTools.getIdUserBySession(key);
+			String username = ServicesTools.getUsernameById(userId);
 			Calendar cal = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String postDate = dateFormat.format((new Timestamp(cal.getTime().getTime())));
@@ -56,15 +51,16 @@ public class AddCommentService {
 			commentDoc.put("username", username);
 			commentDoc.put("data", comment);
 			commentDoc.put("post_date", postDate);
+			commentDoc.put("votes", votes);
 			comments.insert(commentDoc);
 			
 			mongo.close();
 		} catch (ClassNotFoundException e) {
-			return ServicesTools.error(e.getMessage(), 2);
+			return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
 		} catch (SQLException e) {
-			return ServicesTools.error(e.getMessage(), 3);
+			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);
 		} catch (UnknownHostException e) {
-			return ServicesTools.error(e.getMessage(), 4);
+			return ServicesTools.error(e.getMessage(), ServicesTools.UNKNOWN_HOST_EXCEPTION);
 		}
 		
 		return json;

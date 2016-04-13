@@ -9,6 +9,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
+import com.tweet.bd.DBStatic;
 import com.tweet.services.ServicesTools;
 import com.tweet.services.tools.AuthentificationTools;
 
@@ -22,28 +23,34 @@ public class AddFriendService {
 			boolean sessionExists = AuthentificationTools.checkSession(key);
 			
 			if (!sessionExists) {
-				return ServicesTools.error("You are not logged in!", 1);
+				return ServicesTools.error("You are not logged in!", ServicesTools.LOGIN_ERROR);
+			}
+			
+			boolean friendExist = AuthentificationTools.userExists(friend);
+			
+			if (!friendExist) {
+				return ServicesTools.error("This user does not exist.", ServicesTools.WRONG_ARG_ERROR);
 			}
 			
 			JSONObject json = new JSONObject();
 			
-			int userId = AuthentificationTools.getIdUserBySession(key);
-			int friendId = AuthentificationTools.getIdUser(friend);
+			int userId = ServicesTools.getIdUserBySession(key);
+			int friendId = ServicesTools.getIdUser(friend);
 			
-			Mongo mongo = new Mongo("localhost", 27017);
-			DB mongoDatabase = mongo.getDB("test");
-			DBCollection friends = mongoDatabase.getCollection("friends");
+			Mongo mongo = DBStatic.getMongo();
+			DBCollection friends = DBStatic.getMongoCollection(mongo, "friends");
 			
 			BasicDBObject user = new BasicDBObject("user_id", userId);
 			BasicDBObject friendDoc = new BasicDBObject();
 			
-			friendDoc.put("username", friend);
-			friendDoc.put("id", friendId);
+			friendDoc.put("friend_username", friend);
+			friendDoc.put("friend_id", friendId);
 			
 			BasicDBObject updateFriends = new BasicDBObject("$push", new BasicDBObject("friends", friendDoc));
 			
 			friends.update(user, updateFriends, true, false);
 			
+			mongo.close();
 			return json;
 		} catch (SQLException e) {
 			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);

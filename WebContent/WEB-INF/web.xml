@@ -65,6 +65,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>RemoveComment</servlet-name>
+    <servlet-class>com.tweet.services.servlets.comments.RemoveCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveComment</servlet-name>
+    <url-pattern>/comment/remove</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>AddFriend</servlet-name>
     <servlet-class>com.tweet.services.servlets.friends.AddFriendServlet</servlet-class>
   </servlet>
@@ -89,5 +98,23 @@
   <servlet-mapping>
     <servlet-name>RemoveFriend</servlet-name>
     <url-pattern>/friends/remove</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>GetAccountInfo</servlet-name>
+    <servlet-class>com.tweet.services.servlets.account.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAccountInfo</servlet-name>
+    <url-pattern>/account/getinfo</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SaveAccountInfo</servlet-name>
+    <servlet-class>com.tweet.services.servlets.account.SaveAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveAccountInfo</servlet-name>
+    <url-pattern>/account/saveinfo</url-pattern>
   </servlet-mapping>
 </web-app>

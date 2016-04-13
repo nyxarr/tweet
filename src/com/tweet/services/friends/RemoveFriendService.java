@@ -31,16 +31,17 @@ public class RemoveFriendService {
 			DB mongoDatabase = mongo.getDB("test");
 			DBCollection friends = mongoDatabase.getCollection("friends");
 			
-			int userId = AuthentificationTools.getIdUserBySession(key);
+			int userId = ServicesTools.getIdUserBySession(key);
 			BasicDBObject user = new BasicDBObject("user_id", userId);
 			BasicDBObject friendDoc = new BasicDBObject();
 			
-			friendDoc.put("username", friend);
+			friendDoc.put("friend_username", friend);
 			
 			BasicDBObject updateFriends = new BasicDBObject("$pull", new BasicDBObject("friends", friendDoc));
 			
 			friends.update(user, updateFriends, true, false);
 			
+			mongo.close();
 			return json;
 		}  catch (SQLException e) {
 			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);

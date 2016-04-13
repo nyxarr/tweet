@@ -19,12 +19,12 @@ public class RegisterService {
 			// Verifie que l'utilisateur n'existe pas sinon ERROR 1
 			boolean checkUser = AuthentificationTools.userExists(username);
 			if (checkUser) {
-				return ServicesTools.error("Username already exists", 1);
+				return ServicesTools.error("Username already exists", ServicesTools.REGISTER_ERROR);
 			}
 			
 			boolean checkEmail = AuthentificationTools.emailExists(email);
 			if (checkEmail) {
-				return ServicesTools.error("Email already exists", 2);
+				return ServicesTools.error("Email already exists", ServicesTools.REGISTER_ERROR);
 			}
 			
 			// Insere l'utilisateur dans la BD

@@ -19,15 +19,15 @@ public class LoginService {
 		try {
 			boolean isUser = AuthentificationTools.userExists(username);
 			if (!isUser) {
-				return ServicesTools.error("Unknown user " + username, 1);
+				return ServicesTools.error("Unknown user " + username, ServicesTools.LOGIN_ERROR);
 			}
 			
 			boolean passwordCheck = AuthentificationTools.checkPassword(username, password);
 			if (!passwordCheck) {
-				return ServicesTools.error("Bad password " + username, 2);
+				return ServicesTools.error("Bad password " + username, ServicesTools.LOGIN_ERROR);
 			}
 			
-			int idUser = AuthentificationTools.getIdUser(username);
+			int idUser = ServicesTools.getIdUser(username);
 			
 			JSONObject response = new JSONObject();
 			String key = AuthentificationTools.insertSession(idUser, false);
@@ -35,11 +35,11 @@ public class LoginService {
 			
 			return response;
 		} catch (JSONException e) {
-			return(ServicesTools.error("JSON Problem : "+e.getMessage(),100));
+			return(ServicesTools.error("JSON Problem : "+e.getMessage(), ServicesTools.JSON_EXCEPTION));
 		} catch (SQLException e) {
-			return(ServicesTools.error("SQL Problem : " + e.getMessage(), 101));
+			return(ServicesTools.error("SQL Problem : " + e.getMessage(), ServicesTools.SQL_EXCEPTION));
 		} catch (ClassNotFoundException e) {
-			return ServicesTools.error(e.getMessage(), 102);
+			return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
 		}
 	}
 }

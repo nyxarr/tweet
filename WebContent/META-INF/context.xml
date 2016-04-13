@@ -2,9 +2,9 @@
 <Context>
     <Resource
         name="jdbc/db" type="javax.sql.DataSource"
-        maxActive="100" maxIdle="30" maxWait="10000"
-        url="jdbc:mysql://localhost/test"
+        maxActive="10" maxIdle="30" maxWait="10000"
+        url="jdbc:mysql://132.227.201.129:33306/gr3_guenfissi"
         driverClassName="com.mysql.jdbc.Driver"
-        username="root" password="berber"
+        username="gr3_guenfissi" password="XUf3KU"
     />
 </Context>

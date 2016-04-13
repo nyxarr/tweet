@@ -2,7 +2,6 @@ package com.tweet.services.friends;
 
 import java.net.UnknownHostException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,7 +28,7 @@ public class GetFriendService {
 				return ServicesTools.error("Session expired.", 1);
 			}
 			
-			int userId = AuthentificationTools.getIdUserBySession(key);
+			int userId = ServicesTools.getIdUserBySession(key);
 			
 			Mongo mongo = new Mongo("localhost", 27017);
 			DB mongoDatabase = mongo.getDB("test");
@@ -47,6 +46,7 @@ public class GetFriendService {
 				json.put("friends", new BasicDBObject());
 			}
 			
+			mongo.close();
 			return json;
 		} catch (SQLException e) {
 			return ServicesTools.error(e.getMessage(), ServicesTools.SQL_EXCEPTION);

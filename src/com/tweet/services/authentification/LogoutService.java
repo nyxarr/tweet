@@ -11,22 +11,22 @@ import com.tweet.services.tools.AuthentificationTools;
 public class LogoutService {
 	public static JSONObject logoutUser(String key) {
 		if (key == null) {
-			return ServicesTools.error("Wrong arguments.", 0);
+			return ServicesTools.error("Wrong arguments.", ServicesTools.WRONG_ARG_ERROR);
 		}
 
 		try {
 			if (AuthentificationTools.checkSession(key)) {
 				AuthentificationTools.deleteSession(key);
 			} else {
-                return ServicesTools.error("The session does not exist.", 1);
+                return ServicesTools.error("The session does not exist.", ServicesTools.WRONG_ARG_ERROR);
             }
 
             JSONObject response = new JSONObject();
             return response;
         } catch (SQLException e) {
-            return(ServicesTools.error("SQL Problem : " + e.getMessage(), 101));
+            return(ServicesTools.error("SQL Problem : " + e.getMessage(), ServicesTools.SQL_EXCEPTION));
         } catch (ClassNotFoundException e) {
-            return ServicesTools.error(e.getMessage(), 102);
+            return ServicesTools.error(e.getMessage(), ServicesTools.CLASS_NOT_FOUND_EXCEPTION);
         }
 	}
 }

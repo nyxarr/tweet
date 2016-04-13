@@ -129,7 +129,7 @@ button#send-message {
     max-width: 100%;
 }
 
-#body-scroll {
+.body-scroll {
     width: 80%;
     height: auto;
     position: absolute;
@@ -155,6 +155,8 @@ button#send-message {
     min-height: 100px;
     font-weight: 400;
 }
+
+/* ----------------- Friends menu ----------------- */
 
 #add-friend-button {
     width: 100%;
@@ -202,7 +204,6 @@ button#send-message {
 
 #friend-add-input {
     width: 100%;
-    height: 1.8em;
     margin: 0px;
     padding-left: 5px;
     border-radius: 0px;
@@ -212,9 +213,11 @@ button#send-message {
     border-color: #a94442;
 }
 
+/* ----------------- Tweets menu ----------------- */
+
 #edit-tweets .modal-dialog {
     width: 80% !important;
-}q
+}
 
 #modal-tweets .table td:nth-child(1) p {
     width: 600px;
@@ -228,6 +231,18 @@ button#send-message {
     background-color: #FDFDFD;
 }
 
+#modal-tweets .glyphicon {
+    float: none;
+}
+
+#modal-tweets .glyphicon-remove {
+    color: red;
+}
+
+#modal-tweets .glyphicon-edit {
+    color: #32ccb6;
+}
+
 .glyphicon {
     float: right;
     margin-right: 10px;
@@ -238,13 +253,35 @@ button#send-message {
     font-size: 0.9em;
 }
 
+/* ----------------- Account ----------------- */
+
+.borderless > tbody > tr > td, .borderless > tbody > tr > th {
+    border: none;
+    padding-bottom: 25px;
+}
+
+.account-row-title {
+    width: 200px;
+    font-weight: 500;
+}
+
+.row-account-infos p {
+    float: left;
+}
+
+#account-infos-table .glyphicon {
+    color: #32ccb6;
+}
+
+/* ----------------- Responsive ----------------- */
+
 @media screen and (max-width: 991px) {
     #leftside-menu {
         position: relative;
         height: auto;
     }
 
-    #body-scroll {
+    .body-scroll {
         width: 100%;
     }
 

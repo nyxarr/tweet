@@ -13,21 +13,20 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
+import com.tweet.bd.DBStatic;
 import com.tweet.services.ServicesTools;
-import com.tweet.services.tools.AuthentificationTools;
 
 public class GetCommentService {
 	public static JSONObject getComments(int page, String key) {
 		JSONObject retour = new JSONObject();
 		
 		try {
-			Mongo mongo = new Mongo("localhost", 27017); // "132.227.201.129", 27130
-			DB mongoDatabase = mongo.getDB("test"); // gr3_guenfissi
-			DBCollection comments = mongoDatabase.getCollection("comments");
+			Mongo mongo = DBStatic.getMongo();
+			DBCollection comments = DBStatic.getMongoCollection(mongo, "comments");
 			DBCursor cursor;
 			
-			if( key != null ) {
-				int userId = AuthentificationTools.getIdUserBySession(key);
+			if( key != null && !key.isEmpty()) {
+				int userId = ServicesTools.getIdUserBySession(key);
 
 				BasicDBObject query = new BasicDBObject();
 				query.put("user_id", userId);

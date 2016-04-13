@@ -58,49 +58,10 @@ public class AuthentificationTools {
         return false;
     }
     
-    public static int getIdUser(String username) throws SQLException, ClassNotFoundException {
-        Connection conn = DBStatic.getConnection(null);
-        
-        String idUser = "SELECT id FROM user WHERE username LIKE LOWER(?)";
-        PreparedStatement statement = conn.prepareStatement(idUser);
-        statement.setString(1, username);
-        
-        ResultSet result = statement.executeQuery();
-        result.first();
-        
-        return result.getInt(1);
-    }
-    
-    public static int getIdUserBySession(String key) throws SQLException, ClassNotFoundException {
-    	Connection conn = DBStatic.getConnection(null);
-        
-        String idUser = "SELECT user_id FROM session WHERE session_key LIKE ?";
-        PreparedStatement statement = conn.prepareStatement(idUser);
-        statement.setString(1, key);
-        
-        ResultSet result = statement.executeQuery();
-        result.first();
-        
-        return result.getInt(1);
-    }
-    
-    public static String getUsernameById(int id) throws SQLException, ClassNotFoundException {
-    	Connection conn = DBStatic.getConnection(null);
-        
-        String idUser = "SELECT username FROM user WHERE id = ?";
-        PreparedStatement statement = conn.prepareStatement(idUser);
-        statement.setInt(1, id);
-        
-        ResultSet result = statement.executeQuery();
-        result.first();
-        
-        return result.getString(1);
-    }
-    
     public static String insertSession(int idUser, boolean admin) throws SQLException, ClassNotFoundException {
         Connection conn = DBStatic.getConnection(null);
         
-        // G�n�ration cl� de session
+        // Génération clé de session
         UUID uuid = UUID.randomUUID();
         String key = uuid.toString().replace("-", "");
         

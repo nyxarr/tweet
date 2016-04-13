@@ -12,7 +12,7 @@ $(document).ready(function($) {
 			$.each(data.friends, function(i, item) {
 				$('#friends-panel ul').append(
 					'<li><a href="#" class="remove-friend"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-size:0.8em; float:left; margin-top:3px;"></span></a>' +
-					item.username +
+					item.friend_username +
 					'</li>'
 				);
 			});
@@ -44,6 +44,12 @@ $(document).ready(function($) {
 				key: localStorage.getItem("tweet_key"),
 				friend: $('#friend-add-input').val()
 			}).done(function(data) {
+				console.log(data);
+				if (data.error) {
+					alert(data.error);
+					return;
+				}
+
 				location.reload(true);
 			});
 		}
